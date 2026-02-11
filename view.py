@@ -1,3 +1,5 @@
+from contact import Contact
+from typing import Any
 
 class View:
     MENU_ITEMS = (
@@ -11,21 +13,29 @@ class View:
         "выход"
     )
 
-    def show_menu(self):
+    @staticmethod
+    def show_menu() -> None:
+        """Вывести меню"""
         text = "Введите число действия:\n\n"
-        for i, item in enumerate(self.MENU_ITEMS):
+        for i, item in enumerate(View.MENU_ITEMS):
             text += f"{i}. {item}\n"
         print(text)
 
-    def show_contacts(self, contacts):
+    @staticmethod
+    def show_contacts(contacts: list[Contact]) -> None:
+        """Показать все контакты
+        Args:
+            contacts (list[Contact]) : Контакты, которые необходимо вывести в консоли
+        """
         if not contacts:
             print("Сначала откройте файл")
         else:
             txt = "" # Контакты:\n
             for i, contact in enumerate(contacts):
-                txt += f"{i}. {contact.name} | {contact.number} | {contact.description}\n"
+                txt += f"{i}. {str(contact)}\n"
             print(txt)
 
-
-    def show_message(self, msg):
+    @staticmethod
+    def show_message(msg: Any) -> None:
+        """Вывести сообщение"""
         print(msg)

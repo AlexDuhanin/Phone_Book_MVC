@@ -1,24 +1,24 @@
 from view import View
-from model import ContactBook
-
+from contactbook import ContactBook
 
 class Controller:
 
-    def __init__(self):
+    def __init__(self) -> None:
+        """Инициализация класса"""
         self.book = ContactBook()
         self.view = View()
 
-    def run(self):
+    def run(self) -> None:
         """Главный цикл работы программы"""
         while True:
             self.view.show_menu()
-
+            
             try:
                 n = int(input("Ввод: "))
             except ValueError:
                 self.view.show_message("Ошибка ввода")
 
-            if n == 0:
+            if n == 0: 
                 self.book.open()
             elif n == 1:
                 self.book.save()
@@ -37,6 +37,7 @@ class Controller:
                 self.view.show_message("Выход из телефонной книжки")
                 break
 
-
-controller = Controller()
-controller.run()
+if __name__ == "__main__":
+    controller = Controller()
+    controller.run()
+    
